@@ -25,6 +25,12 @@ header {
 .logo {
   width: 300px;
 }
+
+header div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 h1 {
   padding-top: 5px;
   padding-bottom: 10px;
@@ -33,7 +39,10 @@ h1 {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   text-align: center;
 }
-
+.info {
+  width: 30px;
+  height: 30px;
+}
 main {
   width: 100%;
   justify-content: center;
@@ -66,6 +75,15 @@ main input:focus {
 }
 
 .botones .singulares {
+  background-color: rgb(173, 17, 17);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 5px;
+}
+.singulares {
   background-color: rgb(173, 17, 17);
   color: white;
   border: none;
@@ -128,4 +146,32 @@ main input:focus {
 .mostrarDiv {
   display: flex;
   flex-direction: column;
+}
+
+.divInfo {
+  position: absolute;
+  top: 25%;
+  left: 12%;
+  background-color: rgba(71, 67, 67, 0.699);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+}
+
+.pTitulo {
+  background-color: rgb(173, 17, 17);
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.divInfo div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

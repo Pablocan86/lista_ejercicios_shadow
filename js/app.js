@@ -6,7 +6,8 @@ const bntMusculo = document.querySelector("#musculo");
 const btnEjercicio = document.querySelector("#ejercicio");
 const divMusculo = document.querySelector("#divMusculo");
 const divEjercicio = document.querySelector("#divEjercicio");
-
+const informacion = document.querySelector("#informacion");
+const main = document.querySelector("#main");
 bntMusculo.addEventListener("click", () => {
   divMusculo.classList.replace("ocultar", "mostrarDiv");
   divEjercicio.classList.replace("mostrarDiv", "ocultar");
@@ -90,5 +91,40 @@ inputEjercicio.addEventListener("input", () => {
       listaCoincidencias.appendChild(itemLista);
     });
     divResultados2.appendChild(listaCoincidencias);
+  }
+});
+
+let divInfoAgregado = false;
+
+informacion.addEventListener("click", () => {
+  if (!divInfoAgregado) {
+    const divInfo = document.createElement("div");
+    divInfo.classList.add("divInfo");
+    main.appendChild(divInfo);
+    const explicacion = `<p class="pTitulo">BUSCA POR LOS SUGUIENTES MUSCULOS</p>
+    <p>Pectorales / Pecho</p>
+    <p>Dorsales / Espalda</p>
+    <p>Deltoides / Hombros</p>
+    <p>Biceps</p>
+    <p>Triceps</p>
+    <p>Trapecios</p>
+    <p>Cuadriceps / Piernas</p>
+    <p>Femorales / Isquiotibiales / Piernas</p>
+    <p>Gluteos</p>
+    <p>Gemelos / Pantorrillas</p>
+    <p>Abdominales</p>
+    <p>Lumbares</p><p>Elasticas (entrenamiento con bandas)</p>
+    <p>Estiramiento</p>
+    <div><button id="cerrarInfo"class="singulares">Cerrar</button></div>`;
+    divInfo.innerHTML = explicacion;
+
+    const cerrarInfo = document.querySelector("#cerrarInfo");
+
+    cerrarInfo.addEventListener("click", () => {
+      divInfo.remove();
+      divInfoAgregado = false; // Restablece la bandera a false
+    });
+
+    divInfoAgregado = true; // Cambia la bandera a true
   }
 });
