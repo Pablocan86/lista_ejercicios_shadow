@@ -55,7 +55,7 @@ input.addEventListener("input", () => {
     coincidenciasMusculo.forEach((ejercicio) => {
       const itemLista = document.createElement("li");
       itemLista.classList.add("liEjercicios");
-      itemLista.innerHTML = `<div class="liDiv"><p>${ejercicio.nombre}</p><a href="${ejercicio.video}" target="_blank"><img src="../assets/images/video.png" alt=""></a></div>`;
+      itemLista.innerHTML = `<div class="liDiv"><p>${ejercicio.nombre}</p><a href="${ejercicio.video}" target="_blank"><img src="./assets/images/video.png" alt=""></a></div>`;
       itemLista.addEventListener("click", () => {
         // Cuando se hace clic en un elemento de la lista, se completa el valor en el input
         inputBuscar.value = ejercicio.nombre;
@@ -87,7 +87,7 @@ inputEjercicio.addEventListener("input", () => {
     coincidencias.forEach((e) => {
       const itemLista = document.createElement("li");
       itemLista.classList.add("liEjercicios");
-      itemLista.innerHTML = `<div class="liDiv"><p>${e.nombre}</p><a href="${e.video}" target="_blank"><img src="../assets/images/video.png" alt=""></a></div>`;
+      itemLista.innerHTML = `<div class="liDiv"><p>${e.nombre}</p><a href="../assets/images/${e.video}" target="_blank"><img src="./assets/images/video.png" alt=""></a></div>`;
       listaCoincidencias.appendChild(itemLista);
     });
     divResultados2.appendChild(listaCoincidencias);
