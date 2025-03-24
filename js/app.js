@@ -8,6 +8,7 @@ const divMusculo = document.querySelector("#divMusculo");
 const divEjercicio = document.querySelector("#divEjercicio");
 const informacion = document.querySelector("#informacion");
 const main = document.querySelector("#main");
+
 bntMusculo.addEventListener("click", () => {
   divMusculo.classList.replace("ocultar", "mostrarDiv");
   divEjercicio.classList.replace("mostrarDiv", "ocultar");
@@ -35,10 +36,8 @@ class BaseDeDatos {
 }
 
 const bd = new BaseDeDatos();
-
-//BUSCA COINCIDENCIA POR GRUPO MUSCULAR
-input.addEventListener("input", () => {
-  const ejercicioBuscado = input.value.trim().toUpperCase();
+async function buscar(elemento) {
+  const ejercicioBuscado = elemento.value.trim().toUpperCase();
   divResultados.innerHTML = "";
   if (ejercicioBuscado === "") {
     return; // Si no hay texto, no se muestra la lista desplegable
@@ -67,6 +66,10 @@ input.addEventListener("input", () => {
 
     divResultados.appendChild(listaCoincidencias);
   }
+}
+//BUSCA COINCIDENCIA POR GRUPO MUSCULAR
+input.addEventListener("input", () => {
+  buscar(input);
 });
 
 //BUSCA COINCIDENCIAS POR NOMBRE DE EJERCICIO
@@ -102,19 +105,21 @@ informacion.addEventListener("click", () => {
     divInfo.classList.add("divInfo");
     main.appendChild(divInfo);
     const explicacion = `<p class="pTitulo">BUSCA POR LOS SUGUIENTES MUSCULOS</p>
-    <p>Pectorales / Pecho</p>
-    <p>Dorsales / Espalda</p>
-    <p>Deltoides / Hombros</p>
-    <p>Biceps</p>
-    <p>Triceps</p>
-    <p>Trapecios</p>
-    <p>Cuadriceps / Piernas</p>
-    <p>Femorales / Isquiotibiales / Piernas</p>
-    <p>Gluteos</p>
-    <p>Gemelos / Pantorrillas</p>
-    <p>Abdominales</p>
-    <p>Lumbares</p><p>Elasticas (entrenamiento con bandas)</p>
-    <p>Estiramiento</p>
+    <div><span class="clasification">Pectorales</span> <span class="clasification">Pecho</span>
+    <span class="clasification" >Dorsales</span>  <span class="clasification">Espalda</span>
+    <span class="clasification" >Deltoides</span>  <span class="clasification">Hombros</span>
+    <span class="clasification" >Biceps</span>
+    <span class="clasification" >Triceps</span>
+    <span class="clasification" >Trapecios</span>
+    <span class="clasification" >Cuadriceps</span>  <span class="clasification">Piernas</span>
+    <span class="clasification" >Femorales</span>  <span class="clasification">Isquiotibiales</span>  <span class="clasification">Piernas</span>
+    <span class="clasification" >Gluteos</span>
+    <span class="clasification" >Aductores</span>
+    <span class="clasification" >Gemelos</span>  <span class="clasification">Pantorrillas</span>
+    <span class="clasification" >Abdominales</span>
+    <span class="clasification" >Lumbares</span>
+    <span class="clasification" >Elasticas</span>
+    <span class="clasification" >Estiramiento</span></div>
     <div><button id="cerrarInfo"class="singulares">Cerrar</button></div>`;
     divInfo.innerHTML = explicacion;
 
@@ -126,5 +131,23 @@ informacion.addEventListener("click", () => {
     });
 
     divInfoAgregado = true; // Cambia la bandera a true
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".clasification")) {
+    console.log(event.target.textContent);
+    const divInfo = document.querySelector(".divInfo");
+
+    divInfo.remove();
+    divInfoAgregado = false;
+    divMusculo.classList.replace("ocultar", "mostrarDiv");
+    divEjercicio.classList.replace("mostrarDiv", "ocultar");
+    bntMusculo.classList.replace("singulares", "botonOprimido");
+    btnEjercicio.classList.replace("botonOprimido", "singulares");
+
+    input.value = `${event.target.textContent}`;
+    const inputEvent = new Event("input");
+    input.dispatchEvent(inputEvent);
   }
 });
